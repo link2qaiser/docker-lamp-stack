@@ -1,13 +1,16 @@
 ARG PHP_VERSION="7.3"
 FROM php:${PHP_VERSION:+${PHP_VERSION}-}fpm-buster
 
-FROM php:7.4-fpm-buster
+FROM php:7.3-fpm-buster
 
 
-RUN apt update; \
-    apt upgrade;
+RUN apt update;
+#RUN apt upgrade;
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN apt-get install -y libzip-dev \
+    zip 
+RUN docker-php-ext-install zip
 
 #############Couchbase###########################
 # php extension installer for the common ones
