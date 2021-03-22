@@ -12,6 +12,7 @@ RUN echo "Include /usr/local/apache2/conf/demo.apache.conf" \
 FROM php:7.3-apache
 RUN a2enmod rewrite
 RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
 
 #############Couchbase###########################
 # php extension installer for the common ones

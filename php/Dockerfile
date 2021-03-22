@@ -8,6 +8,7 @@ RUN apt update; \
     apt upgrade;
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
 
 #############Couchbase###########################
 # php extension installer for the common ones
