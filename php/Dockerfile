@@ -4,10 +4,11 @@ FROM php:${PHP_VERSION:+${PHP_VERSION}-}fpm-buster
 FROM php:7.4-fpm-buster
 
 
-RUN apt update; \
-    apt upgrade;
+RUN apt update;
+RUN apt upgrade;
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
 
 #############Couchbase###########################
 # php extension installer for the common ones
