@@ -1,48 +1,20 @@
 version: "3.2"
 services:
-  php:
-    build: 
-      context: './php/'
-      args:
-       PHP_VERSION: ${PHP_VERSION}
-    networks:
-      - backend
-    volumes:
-      - /Users/qaisers/Documents/D/practice/php/:/var/www/html/
-    container_name: php
-  apache:
+  base_image:
     build:
-      context: './apache/'
+      context: "./base_image/"
       args:
-       APACHE_VERSION: ${APACHE_VERSION}
-    depends_on:
-      - php
-      - mysql
+        APACHE_VERSION: ${APACHE_VERSION}
+
     networks:
-      - frontend
       - backend
     ports:
       - "8080:80"
     volumes:
       - /Users/qaisers/Documents/D/practice/php/:/var/www/html/
-    container_name: apache
-  mysql:
-    image: mysql:${MYSQL_VERSION:-latest}
-    restart: always
-    ports:
-      - "3306:3306"
-    volumes:
-            - /Users/qaisers/Documents/D/databases/mysql:/var/lib/mysql
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${DB_NAME}"
-      MYSQL_USER: "${DB_USERNAME}"
-      MYSQL_PASSWORD: "${DB_PASSWORD}"
-    container_name: mysql
+    container_name: base_image
+
 networks:
-  frontend:
   backend:
 volumes:
-    data:
+  data:
