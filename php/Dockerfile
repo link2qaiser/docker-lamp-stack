@@ -4,8 +4,8 @@ FROM php:${PHP_VERSION:+${PHP_VERSION}-}fpm-buster
 FROM php:7.4-fpm-buster
 
 
-RUN apt update;
-RUN apt upgrade;
+RUN apt update -y;
+RUN apt upgrade -y;
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN docker-php-ext-install exif && docker-php-ext-enable exif
@@ -27,11 +27,6 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y libcouchbase-dev libcouchbase3-libevent libcouchbase3-tools
 
-# Install ext-couchbase
-# After the fix is released in 3.0.3
-RUN pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.3.tgz
-# Until that fix
-#RUN pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.3.tgz
 
 WORKDIR /var/www/html
 

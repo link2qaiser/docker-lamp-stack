@@ -33,7 +33,7 @@ RUN apt-get update \
 
 # Install ext-couchbase
 # After the fix is released in 3.0.3
-RUN pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.3.tgz
+#RUN pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.3.tgz
 # Until that fix
 #RUN pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.3.tgz
 
